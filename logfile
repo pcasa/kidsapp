@@ -86,3 +86,6 @@ WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
 WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
 WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
 WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+FATAL:  database "kidsapp_development" does not exist
+FATAL:  database "kidsapp_development" does not exist
+FATAL:  database "kidsapp_production" does not exist
