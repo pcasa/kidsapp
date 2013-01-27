@@ -1,0 +1,82 @@
+<%= simple_form_for @feeding, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if params[:child_id] %>
+  <%= f.input :child_id, :as => :hidden, :input_html => { :value => params[:child_id] }  %>
+  <% else %>
+  <%= f.association :child %>
+  <% end %>
+  <%= f.input :feeding_time, :wrapper => :append do %>
+    <%= f.text_field :feeding_time, :class => 'datetimepicker' %>
+	<%= content_tag :span, raw('<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>'), class: "add-on" %>	    
+  <% end %>
+
+  <%= f.input :amount, :as => :string, :input_html => {:id => "amount_input"} %>
+  <%= f.input :unit, :as => :select, :collection => %w[oz lbs snacks meal], :include_blank => false %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                :back, :class => 'btn' %>
+  </div>
+<% end %>
+
+<%= content_for :bottom_css do %>
+	<%= stylesheet_link_tag "custom-theme/jquery-ui-1.9.2.custom", "bootstrap-datetimepicker" %>
+<% end %>
+
+<%= content_for :bottom_javascripts do %>
+	<%= javascript_include_tag "jquery-ui-1.9.2.custom.min", "jqueryui.punch", "bootstrap-datetimepicker" %>
+	<style type="text/css" media="screen">
+		.ui-slider .ui-slider-handle{
+		    min-width:1.5em; 
+		    min-height:1.5em; 
+			-moz-border-radius:0.75em;
+			 -webkit-border-radius: 0.75em;
+			text-align:center;
+		    
+		}
+		#slider{
+			width:84%;
+			float:left;
+		}
+		#slider_info{
+			width:15%;
+			line-height:1.1em;
+			font-size:2em;
+			float:right;
+			text-align:right;
+		}
+	</style>
+	<script type="text/javascript">
+	  $(function() {
+		// Set the datetime picker
+		$( ".datetimepicker" ).each(function( index ) {
+		  var parent_div = $(this).parent();
+		  var div_id = "datetimepicker_" + index;
+		  $(parent_div).attr("id", div_id);
+		  $("#" + div_id).datetimepicker({
+			language: 'en',
+			format: 'yyyy-MM-dd hh:mm:ss'
+		  });
+		});
+		
+		// add the Slider to the view
+		$("#amount_input").parent().append('<div id="slider_container"><div id="slider"></div><div id="slider_info"></div></div>');
+		$("#amount_input").hide();
+		var starting_slider_val = <%= @feeding && @feeding.amount.present? ? @feeding.amount : 0 %>;
+		$( "#slider" ).slider({
+			    value: starting_slider_val,
+		        min: 0,
+		        max: 25,
+		        step: 0.5,
+		        slide: function( event, ui ) {
+		                           //Its setting the slider value to the element with id "amount"
+		            $( "#amount_input" ).val( ui.value );
+		            $( "#slider_info" ).html( ui.value );
+		            $('.ui-slider-handle').html(ui.value )
+		        }
+		    });
+		$( "#slider_info" ).html(starting_slider_val);
+		$( "#slider .ui-slider-handle" ).html(starting_slider_val);
+	  });
+	
+	</script>
+<% end %>

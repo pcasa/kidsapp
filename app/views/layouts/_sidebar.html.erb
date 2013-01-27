@@ -1,0 +1,30 @@
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li class="nav-header">My kids</li>
+    
+
+
+
+    <% current_user.children.each do |child| %>
+
+
+	<div class="dropdown">
+	  <a class="dropdown-toggle btn" id="dLabel<%= child.id %>" role="button" data-toggle="dropdown" data-target="#">
+	    <%= child.name %>
+	    <b class="caret"></b>
+	  </a>
+	  <ul class="dropdown-menu left-submenu" role="menu" aria-labelledby="dLabel<%= child.id %>">
+		<li><%= link_to "See details", [current_user, child], :class => 'btn'%></li>
+			<li><%= link_to raw("<i class='icon-food'></i> Feedings"), user_child_feedings_path(current_user, child), :class => 'btn' %></li>
+			<li><%= link_to raw("<i class='icon-food'></i><div class='icon-plus icon-add-plus'></div> Add feeding"), new_user_child_feeding_path(current_user, child), :class => 'btn' %></li>
+			<li><%= link_to raw("<i class='icon-user-md'></i> Dr Visits"), user_child_dr_visits_path(current_user, child), :class => 'btn' %></li>
+			<li><%= link_to raw("<i class='icon-user-md'></i><div class='icon-plus icon-add-plus'></div> Add Dr Visits"), new_user_child_dr_visit_path(current_user, child), :class => 'btn' %></li>
+			<li><%= link_to "Poops", user_child_bowel_movements_path(current_user, child), :class => 'btn' %></li>
+			<li><%= link_to "Add poop", new_user_child_bowel_movement_path(current_user, child), :class => 'btn' %></li>
+	  </ul>
+	</div>
+
+    <% end %>
+<li><br /><div><%= link_to "Add child", new_user_child_path(current_user), :class => 'btn btn-primary' %></div>  </li>
+  </ul>
+</div><!--/.well -->

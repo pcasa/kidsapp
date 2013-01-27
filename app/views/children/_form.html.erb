@@ -1,0 +1,10 @@
+<%= simple_form_for [@user, @child], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :birth_month, :as => :select, :collection => (1..12), :include_blank => false, :selected => @child.birth_month ? @child.birth_month : Date.today.month %>
+  <%= f.input :birth_year, :as => :select, :collection => ((Date.today.year - 18)..Date.today.year), :selected => @child.birth_year ? @child.birth_year : Date.today.year.to_s %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                user_children_path(@user), :class => 'btn' %>
+  </div>
+<% end %>

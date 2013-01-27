@@ -1,0 +1,42 @@
+<%- model_class = Feeding -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:child_id) %></th>
+      <th><%= model_class.human_attribute_name(:feeding_time) %></th>
+      <th><%= model_class.human_attribute_name(:amount) %></th>
+      <th><%= model_class.human_attribute_name(:unit) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @feedings.each do |feeding| %>
+      <tr>
+        <td><%= link_to feeding.id, feeding_path(feeding) %></td>
+        <td><%= feeding.child_id %></td>
+        <td><%= feeding.feeding_time %></td>
+        <td><%= feeding.amount %></td>
+        <td><%= feeding.unit %></td>
+        <td><%=l feeding.created_at %></td>
+        <td>
+          <%= link_to "Edit",
+                      edit_feeding_path(feeding), :class => 'btn btn-mini' %>
+          <%= link_to "Delete",
+                      feeding_path(feeding),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New",
+            @parent && @child ? new_user_child_feeding_path(@parent, @child) : new_feeding_path,
+            :class => 'btn btn-primary' %>

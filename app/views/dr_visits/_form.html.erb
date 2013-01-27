@@ -1,0 +1,36 @@
+<%= simple_form_for [@parent, @child, @dr_visit], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :child_id, :as => :hidden, :input_html => {:value => params[:child_id]} %>
+  <%= f.input :appointment, :wrapper => :append do %>
+    <%= f.text_field :appointment, :class => 'datetimepicker' %>
+	<%= content_tag :span, raw('<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>'), class: "add-on" %>	    
+  <% end %>
+  <% shots = @child.shots_in_age_range.collect{|s| ["#{s.vaccine.name} given between #{age_to_words(s.min_age * 30)} and #{age_to_words(s.max_age * 30)} ", s.id] }%>
+  <%= f.association :dosages, :as => :check_boxes, :collection => shots %>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                user_child_dr_visits_path(@parent, @child), :class => 'btn' %>
+  </div>
+<% end %>
+
+<%= content_for :bottom_stylesheets do %>
+<%= stylesheet_link_tag "bootstrap-datetimepicker" %>
+<% end %>
+<%= content_for :bottom_javascripts do %>
+    <%= javascript_include_tag "bootstrap-datetimepicker" %>
+	<script  type="text/javascript" charset="utf-8" async defer>
+	  jQuery(document).ready(function(){
+		$( ".datetimepicker" ).each(function( index ) {
+		  var parent_div = $(this).parent();
+		  var div_id = "datetimepicker_" + index;
+		  $(parent_div).attr("id", div_id);
+		  $("#" + div_id).datetimepicker({
+			language: 'en',
+			format: 'yyyy-MM-dd',
+			pickTime:false
+		  });
+		});
+	});
+	</script>
+<% end %>

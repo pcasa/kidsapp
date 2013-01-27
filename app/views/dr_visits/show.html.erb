@@ -1,0 +1,28 @@
+<%- model_class = DrVisit -%>
+<div class="page-header">
+  <h1>Dr Visit for <%= @child.try(:name) %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:appointment) %>:</strong></dt>
+  <dd><%= @dr_visit.appointment.try(:strftime, '%D') %></dd>
+</dl>
+<% if @dr_visit.dosages %>
+<ul>
+	<% @dr_visit.dosages.each do |dosage| %>
+	<li><b><%= dosage.vaccine.name %></b> <i><%= "given between #{pluralize(dosage.min_age, 'month')} and #{pluralize(dosage.max_age, 'month')} " %></i></li>
+	<% end %>
+</ul>
+<% end %>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              :back, :class => 'btn'  %>
+  <%= link_to "Edit",
+              edit_user_child_dr_visit_path(@parent, @child, @dr_visit), :class => 'btn' %>
+  <%= link_to "Delete",
+              user_child_dr_visit_path(@parent, @child, @dr_visit),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

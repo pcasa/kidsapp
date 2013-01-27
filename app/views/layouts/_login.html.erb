@@ -1,0 +1,7 @@
+<%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-inline' } do |f| %>
+    <%= f.input :email, :required => false, :label => false, :input_html => {:placeholder => "Email"} %>
+    <%= f.input :password, :required => false, :label => false, :input_html => {:placeholder => "Password"} %>
+    <%= f.input :remember_me, :wrapper => :inline_checkbox, :as => :boolean if devise_mapping.rememberable? %>
+
+    <%= f.button :submit, "Sign in" %>
+<% end %>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  child_id: 1
+  appointment: 2013-01-19
+
+two:
+  child_id: 1
+  appointment: 2013-01-19

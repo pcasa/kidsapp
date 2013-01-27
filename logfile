@@ -1,0 +1,88 @@
+LOG:  database system was shut down at 2013-01-06 12:44:22 EST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "kidsapp_development" does not exist
+FATAL:  database "kidsapp_test" does not exist
+ERROR:  relation "users" already exists
+STATEMENT:  CREATE TABLE "users" ("id" serial primary key, "first_name" character varying(255), "last_name" character varying(255), "role" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+FATAL:  database "kidsapp_development" does not exist
+FATAL:  database "kidsapp_test" does not exist
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+ERROR:  relation "children" does not exist at character 315
+STATEMENT:              SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+	              FROM pg_attribute a LEFT JOIN pg_attrdef d
+	                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	             WHERE a.attrelid = '"children"'::regclass
+	               AND a.attnum > 0 AND NOT a.attisdropped
+	             ORDER BY a.attnum
+	
+ERROR:  relation "feedings" does not exist at character 315
+STATEMENT:              SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+	              FROM pg_attribute a LEFT JOIN pg_attrdef d
+	                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	             WHERE a.attrelid = '"feedings"'::regclass
+	               AND a.attnum > 0 AND NOT a.attisdropped
+	             ORDER BY a.attnum
+	
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+ERROR:  relation "vaccines" does not exist at character 315
+STATEMENT:              SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+	              FROM pg_attribute a LEFT JOIN pg_attrdef d
+	                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	             WHERE a.attrelid = '"vaccines"'::regclass
+	               AND a.attnum > 0 AND NOT a.attisdropped
+	             ORDER BY a.attnum
+	
+ERROR:  syntax error at or near "[" at character 8
+STATEMENT:  SELECT [:max_age, :min_age] FROM "dosages"  WHERE "dosages"."vaccine_id" = 13
+ERROR:  schema "vaccines" does not exist
+STATEMENT:  SELECT "vaccines"."id" AS t0_r0, "vaccines"."name" AS t0_r1, "vaccines"."description" AS t0_r2, "vaccines"."created_at" AS t0_r3, "vaccines"."updated_at" AS t0_r4, "dosages"."id" AS t1_r0, "dosages"."annual" AS t1_r1, "dosages"."vaccine_id" AS t1_r2, "dosages"."min_age" AS t1_r3, "dosages"."max_age" AS t1_r4, "dosages"."created_at" AS t1_r5, "dosages"."updated_at" AS t1_r6 FROM "vaccines" LEFT OUTER JOIN "dosages" ON "dosages"."vaccine_id" = "vaccines"."id" ORDER BY vaccines.dosage.min_age
+ERROR:  schema "vaccine" does not exist
+STATEMENT:  SELECT "vaccines"."id" AS t0_r0, "vaccines"."name" AS t0_r1, "vaccines"."description" AS t0_r2, "vaccines"."created_at" AS t0_r3, "vaccines"."updated_at" AS t0_r4, "dosages"."id" AS t1_r0, "dosages"."annual" AS t1_r1, "dosages"."vaccine_id" AS t1_r2, "dosages"."min_age" AS t1_r3, "dosages"."max_age" AS t1_r4, "dosages"."created_at" AS t1_r5, "dosages"."updated_at" AS t1_r6 FROM "vaccines" LEFT OUTER JOIN "dosages" ON "dosages"."vaccine_id" = "vaccines"."id" ORDER BY vaccine.dosage.min_age
+ERROR:  missing FROM-clause entry for table "dosage" at character 472
+STATEMENT:  SELECT "vaccines"."id" AS t0_r0, "vaccines"."name" AS t0_r1, "vaccines"."description" AS t0_r2, "vaccines"."created_at" AS t0_r3, "vaccines"."updated_at" AS t0_r4, "dosages"."id" AS t1_r0, "dosages"."annual" AS t1_r1, "dosages"."vaccine_id" AS t1_r2, "dosages"."min_age" AS t1_r3, "dosages"."max_age" AS t1_r4, "dosages"."created_at" AS t1_r5, "dosages"."updated_at" AS t1_r6 FROM "vaccines" LEFT OUTER JOIN "dosages" ON "dosages"."vaccine_id" = "vaccines"."id" ORDER BY dosage.min_age
+ERROR:  column "dosages.id" must appear in the GROUP BY clause or be used in an aggregate function at character 8
+STATEMENT:  SELECT "dosages".* FROM "dosages"  WHERE (min_age >= 2 or max_age <= 2) GROUP BY vaccine_id
+ERROR:  column "vaccine" does not exist at character 82
+STATEMENT:  SELECT "dosages".* FROM "dosages"  WHERE (min_age >= 2 or max_age <= 2) GROUP BY vaccine
+ERROR:  column "dosages.id" must appear in the GROUP BY clause or be used in an aggregate function at character 8
+STATEMENT:  SELECT "dosages".* FROM "dosages"  WHERE (min_age >= 2 or max_age <= 2) GROUP BY vaccine_id
+ERROR:  relation "dr_visits" does not exist at character 315
+STATEMENT:              SELECT a.attname, format_type(a.atttypid, a.atttypmod),
+	                     pg_get_expr(d.adbin, d.adrelid), a.attnotnull, a.atttypid, a.atttypmod
+	              FROM pg_attribute a LEFT JOIN pg_attrdef d
+	                ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+	             WHERE a.attrelid = '"dr_visits"'::regclass
+	               AND a.attnum > 0 AND NOT a.attisdropped
+	             ORDER BY a.attnum
+	
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+FATAL:  database "kidsapp_development" does not exist
+FATAL:  database "kidsapp_test" does not exist
+FATAL:  database "kidsapp_development" does not exist
+FATAL:  database "kidsapp_test" does not exist
+ERROR:  syntax error at or near ":" at character 54
+STATEMENT:  SELECT "dosages".* FROM "dosages"  WHERE (min_age <= :age_in_months and max_age >= :age_in_months or min_age <= :age_in_months) ORDER BY dosages.min_age ASC
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"
+WARNING:  corrupted statistics file "pg_stat_tmp/pgstat.stat"

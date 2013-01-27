@@ -1,0 +1,27 @@
+<%- model_class = Feeding -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:child_id) %>:</strong></dt>
+  <dd><%= @feeding.child_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:feeding_time) %>:</strong></dt>
+  <dd><%= @feeding.feeding_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:amount) %>:</strong></dt>
+  <dd><%= @feeding.amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:unit) %>:</strong></dt>
+  <dd><%= @feeding.unit %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              feedings_path, :class => 'btn'  %>
+  <%= link_to "Edit",
+              edit_feeding_path(@feeding), :class => 'btn' %>
+  <%= link_to "Delete",
+              feeding_path(@feeding),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

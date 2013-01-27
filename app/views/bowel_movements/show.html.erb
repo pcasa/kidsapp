@@ -1,0 +1,27 @@
+<%- model_class = BowelMovement -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:child_id) %>:</strong></dt>
+  <dd><%= @bowel_movement.child_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bowel_time).try(:strftime, "%D %r") %>:</strong></dt>
+  <dd><%= @bowel_movement.bowel_time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:consistency) %>:</strong></dt>
+  <dd><%= @bowel_movement.consistency %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:color) %>:</strong></dt>
+  <dd><%= @bowel_movement.color %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              user_child_bowel_movements_path(@parent, @child), :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_child_bowel_movement_path(@parent, @child, @bowel_movement), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              user_child_bowel_movement_path(@parent, @child, @bowel_movement),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

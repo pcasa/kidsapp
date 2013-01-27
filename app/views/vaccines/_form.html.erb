@@ -1,0 +1,22 @@
+<%= simple_nested_form_for @vaccine, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description, :input_html => {:class => 'span10'} %>
+
+  <%= f.simple_fields_for :dosages do |dosage_form| %>
+  <div class="well">
+	<%= dosage_form.input :annual %>
+    <%= dosage_form.input :min_age, :input_html => {:min => 0} %>
+    <%= dosage_form.input :max_age, :input_html => {:min => 0} %>
+    <%= dosage_form.link_to_remove "Remove this dosage", :class => 'btn btn-danger' %>
+  </div>
+<% end %>
+<p><%= f.link_to_add "Add a dossage", :dosages, :class => 'btn' %></p>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                :back, :class => 'btn' %>
+  </div>
+<% end %>
+<%= content_for :bottom_javascripts do %>
+<%= javascript_include_tag "nested_form" %>
+<% end %>
